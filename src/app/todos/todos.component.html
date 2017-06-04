@@ -1,0 +1,16 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Todos</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos">
+        <td ><span [ngClass]="{'done': todo.done, 'not-done': !todo.done}">{{ todo.name }}</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
