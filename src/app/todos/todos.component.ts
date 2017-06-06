@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Todo } from './todo';
 
-export class Todo {
-  _id: string;
-  name: string;
-  done: boolean;
-}
+import { TodosService } from './../todos.service';
 
-const TODOS: Todo[] = [
-  {_id: 'someid1', name: 'work', done: true},
-  {_id: 'someid2', name: 'read', done: true},
-  {_id: 'someide3', name: 'lunch', done: false}
-];
 
 @Component({
+  moduleId: module.id,
   selector: 'app-root',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css']
 })
-export class TodosComponent {
+
+export class TodosComponent implements OnInit {
   title = 'app';
-  todos = TODOS;
+  todos: Todo[];
+
+  constructor(private todosService: TodosService) {}
+
+  getTodos(): void {
+    this.todosService.getTodos().then(todos => this.todos = todos);
+  }
+
+  ngOnInit(): void {
+    this.getTodos();
+  }
 }
