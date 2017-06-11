@@ -1,10 +1,17 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var app = express();
+var bodyParser = require('body-parser');
 var path = require('path');
 
+Todo = require('./models/todo');
+
 app.set('port', process.env.PORT || 3010);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/todos');
+var db = mongoose.connection;
 
 app.use(express.static(__dirname + '/dist'));
+app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -17,12 +24,20 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/todos', function(req, res) {
-  var todos = [
-    {_id: 'someid1', name: 'work', done: true},
-    {_id: 'someid2', name: 'read', done: true},
-    {_id: 'someid3', name: 'lunch', done: false}
-  ];
-  res.json({data: todos});
+  Todo.getTodos(function(err, todos) {
+    if (err) throw err;
+    res.json({data: todos});
+  });
+});
+
+app.post('/api/todos', function(req, res) {
+  Todo.addTodo(req.body, function(err, todo) {
+    if (err) {
+      console.log(err);
+      throw err;
+    };
+    res.json({data: todo});
+  });
 });
 
 app.listen(app.get('port'), function() {

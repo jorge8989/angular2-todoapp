@@ -1,4 +1,8 @@
 <div>
+  <label>Todo</label><input #todoName />
+  <button (click)="add(todoName.value); todoName.value = ''">
+    Add
+  </button>
   <table>
     <thead>
       <tr>

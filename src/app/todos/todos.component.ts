@@ -21,6 +21,15 @@ export class TodosComponent implements OnInit {
     this.todosService.getTodos().then(todos => this.todos = todos);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.todosService.create(name)
+      .then(todo => {
+        this.todos.push(todo);
+      });
+  }
+
   ngOnInit(): void {
     this.getTodos();
   }

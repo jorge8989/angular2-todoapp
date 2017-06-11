@@ -18,6 +18,14 @@ export class TodosService {
       .catch(this.handleError);
   }
 
+  create(name: string): Promise<Todo> {
+    return this.http
+      .post(this.todosUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.log(error);
     return Promise.reject(error.message || error);
