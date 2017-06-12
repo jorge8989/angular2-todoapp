@@ -4,3 +4,48 @@
 .not-done {
   color: red;
 }
+* {
+  font-family: sans-serif;
+}
+
+.new-todo-form {
+  width: 400px;
+  margin: auto;
+}
+
+.add-todo-input {
+  height: 25px;
+  border: 1px solid #6e7f80;
+  padding-left: 10px;
+  width: 230px;
+}
+
+.add-todo-button {
+  background-color: #6e7f80;
+  border: none;
+  width: 150px;
+  color: white;
+  height: 29px;
+  padding-left: 10px 10px;
+}
+
+.add-todo-input, .add-todo-button {
+  font-size: 1.2rem;
+}
+table {
+  font-size: 1.2rem;
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 15px;
+}
+table, td, th {
+  border: 1px solid #6e7f80;
+}
+th {
+  background-color: #6e7f80;
+  color: white;
+  width: 200px;
+}
+td, th {
+  padding: 5px 10px;
+}

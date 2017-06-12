@@ -1,8 +1,13 @@
 <div>
-  <label>Todo</label><input #todoName />
-  <button (click)="add(todoName.value); todoName.value = ''">
-    Add
-  </button>
+  <div class="new-todo-form">
+    <input #todoName placeholder="Add todo..." class="add-todo-input" />
+    <button
+      (click)="add(todoName.value); todoName.value = ''"
+      class="add-todo-button"
+    >
+      Add
+    </button>
+  </div>
   <table>
     <thead>
       <tr>
