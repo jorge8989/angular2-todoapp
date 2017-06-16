@@ -24,3 +24,8 @@ module.exports.getTodos = function(callback, limit) {
 module.exports.addTodo = function(todo, callback) {
   Todo.create(todo, callback);
 }
+
+module.exports.removeTodo = function(id, callback) {
+  var query = {_id: id};
+  Todo.remove(query, callback);
+}

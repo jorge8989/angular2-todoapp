@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Method", "GET, POST, PUT, DELTE");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   next();
 });
 
@@ -39,6 +39,13 @@ app.post('/api/todos', function(req, res) {
     res.json({data: todo});
   });
 });
+
+app.delete('/api/todos/:_id', function(req, res) {
+  Todo.removeTodo(req.params._id, function(err, todo) {
+    if (err) throw err;
+    res.json(todo);
+  })
+})
 
 app.listen(app.get('port'), function() {
   console.log('app running on port '+app.get('port'));

@@ -2,7 +2,7 @@
   color: green;
 }
 .not-done {
-  color: red;
+  color: #ff3232;
 }
 * {
   font-family: sans-serif;
@@ -27,6 +27,14 @@
   color: white;
   height: 29px;
   padding-left: 10px 10px;
+}
+
+.remove-todo-button {
+  background-color: #ff3232;
+  border: none;
+  color: white;
+  height: 29px;
+  font-size: 1.2rem;
 }
 
 .add-todo-input, .add-todo-button {
